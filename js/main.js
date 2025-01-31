@@ -79,6 +79,13 @@
   //   Character Details
   results.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
+      const charName = event.target.textContent;
+      const selectedCharacter = filterCharacters.find(
+        (char) => char.name === charName
+      );
+      if (selectedCharacter) {
+        console.log("Selected to: ", selectedCharacter.mass);
+      }
     }
   });
 })();
