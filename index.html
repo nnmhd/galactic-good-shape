@@ -3,10 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="grid.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
     <script defer src="js/main.js"></script>
     <title>Galactic Good Shape</title>
   </head>
-  <body></body>
+  <body>
+    <h1 class="hidden">The Galactic needs more people healthy!</h1>
+    <header>
+      <h2>Galactic Good Shape</h2>
+    </header>
+    <!-- Filter section, user choose weight to see the list -->
+    <section id="filter__container">
+      <h2 class="hidden">
+        The Filter Section, Who are now not on the good shape,we'll see!
+      </h2>
+      <h2 id="body">
+        <!-- Show type of body -->
+      </h2>
+      <p>The Galactic people has high BMI.</p>
+      <ul id="filter-list">
+        <li data-action="obesity">Obesity</li>
+        <li data-action="overweight">Overweight</li>
+        <li data-action="normal">Normal</li>
+        <li data-action="underweight">Underweight</li>
+      </ul>
+    </section>
+
+    <!-- The result -->
+    <section id="result__container">
+      <h3>Top List of</h3>
+      <div id="results">
+        <div id="img__box"><img src="#" alt="" /></div>
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+
+      <div id="result_details">
+        <h4>Name</h4>
+        <p>Bobby</p>
+        <h4>Planet</h4>
+        <p>Tatooine</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>@nate</p>
+      <p>Thanks to <a href="https://stapi.dev">STAPI.dev</a></p>
+    </footer>
+  </body>
 </html>
