@@ -1,13 +1,10 @@
 (() => {
-  const results = document.querySelector("#results");
+  const results = document.querySelector("#results ul");
   const resultDetails = document.querySelector("#result-details");
   const baseURL = "https://swapi.dev/api/";
   const buttonBody = document.querySelectorAll("#filter-list li");
 
-  buttonBody.forEach((list) => {
-    console.log(list);
-  });
-
+  //   Fetch all characters
   function getAllChars() {
     let allCharacters = [];
     let nextPage = `${baseURL}/people/?page=1`;
@@ -22,27 +19,66 @@
           }
         });
     }
-
     return fetchPage(nextPage).then(() => {
-      console.log(allCharacters);
       return allCharacters;
     });
   }
 
-  getAllChars();
-  function showGoodShape() {
-    getAllChars().then((data) => {
-      const tallCharacters = data.filter((char) => char.height > 150);
-
-      console.log(
-        `There are ${tallCharacters.length} characters in good shape!`
-      );
-
-      tallCharacters.forEach((char, index) =>
-        console.log(`${index + 1}. ${char.name} is in good shape!`)
-      );
-    });
+  //   Calculate BMI
+  function calBMI(height, weight) {
+    if (!isNaN(height) && !isNaN(weight)) {
+      let calculated = (weight / (height * 2)) * 100;
+      return calculated;
+    }
   }
 
-  showGoodShape();
+  //   Filter Characters
+  let filterCharacters = [];
+  buttonBody.forEach((list) => {
+    list.addEventListener("click", () => {
+      const cal = list.dataset.action;
+      results.innerHTML = "";
+
+      getAllChars().then((data) => {
+        filterCharacters = data.filter((char) => {
+          let height = parseFloat(char.height);
+          let weight = parseFloat(char.mass);
+          let calculated = calBMI(height, weight);
+
+          if (calculated === null) return false;
+
+          switch (cal) {
+            case "obesity":
+              return calculated >= 30;
+            case "overweight":
+              return calculated < 30 && calculated > 25;
+            case "normal":
+              return calculated >= 18.5 && calculated < 25;
+            case "underweight":
+              return calculated < 18.5;
+            default:
+              return false;
+          }
+        });
+
+        filterCharacters.forEach((char) => {
+          const li = document.createElement("li");
+          li.textContent = char.name;
+          results.appendChild(li);
+        });
+      });
+    });
+  });
+
+  buttonBody.forEach((list) => {
+    list.addEventListener("click", () => {
+      console.log(list.dataset.action);
+    });
+  });
+
+  //   Character Details
+  results.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+    }
+  });
 })();
