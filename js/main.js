@@ -24,6 +24,46 @@
     });
   }
 
+  //   Fetch all planets
+  function getAllPlanets() {
+    let allPlanets = [];
+    let nextPage = `${baseURL}/planets/?page=1`;
+
+    function fetchPage(url) {
+      return fetch(url)
+        .then((res) => res.json())
+        .then((response) => {
+          allPlanets.push(...response.results);
+          if (response.next) {
+            return fetchPage(response.next);
+          }
+        });
+    }
+    return fetchPage(nextPage).then(() => {
+      return allPlanets;
+    });
+  }
+
+  //   Fetch all species
+  function getAllSpecies() {
+    let allSpecies = [];
+    let nextPage = `${baseURL}/species/?page=1`;
+
+    function fetchPage(url) {
+      return fetch(url)
+        .then((res) => res.json())
+        .then((response) => {
+          allSpecies.push(...response.results);
+          if (response.next) {
+            return fetchPage(response.next);
+          }
+        });
+    }
+    return fetchPage(nextPage).then(() => {
+      return allSpecies;
+    });
+  }
+
   //   Calculate BMI
   function calBMI(height, weight) {
     if (!isNaN(height) && !isNaN(weight)) {
@@ -76,15 +116,61 @@
     });
   });
 
-  //   Character Details
-  results.addEventListener("click", (event) => {
+  //  Filter Planets
+  let filterPlanets = [];
+  function loadPlanetsData() {
+    getAllPlanets()
+      .then((data) => {
+        filterPlanets = data;
+        console.log("Loaded Planets:", filterPlanets);
+      })
+      .catch((error) => {
+        console.error("Issue:", error);
+      });
+  }
+  loadPlanetsData();
+
+  //  Filter Species
+  let filterSpecies = [];
+  function loadSpeciesData() {
+    getAllSpecies()
+      .then((data) => {
+        filterSpecies = data;
+        console.log("Loaded Planets:", filterSpecies);
+      })
+      .catch((error) => {
+        console.error("Issue:", error);
+      });
+  }
+
+  loadSpeciesData();
+
+  //  Display Character Details
+  results.addEventListener("click", async (event) => {
     if (event.target.tagName === "LI") {
       const charName = event.target.textContent;
       const selectedCharacter = filterCharacters.find(
         (char) => char.name === charName
       );
+
       if (selectedCharacter) {
-        console.log("Selected to: ", selectedCharacter.mass);
+        console.log("Name", selectedCharacter.name);
+        for (let i = 0; i < filterPlanets.length; i++) {
+          if (selectedCharacter.homeworld === filterPlanets[i].url) {
+            console.log("Home Planet:", filterPlanets[i].name);
+          }
+        }
+
+        for (let i = 0; i < filterSpecies.length; i++) {
+          if (selectedCharacter.species[0] === filterSpecies[i].url) {
+            console.log("Species:", filterSpecies[i].name);
+          }
+        }
+
+        console.log("First Exist:", selectedCharacter.films[0]);
+
+        const li = document.createElement("li");
+        li.textContent = `Classification: ${selectedCharacter.name}`;
       }
     }
   });
