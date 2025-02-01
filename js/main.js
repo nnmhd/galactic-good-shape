@@ -1,6 +1,6 @@
 (() => {
   const results = document.querySelector("#results ul");
-  const resultDetails = document.querySelector("#result-details");
+  const resultDetails = document.querySelector("#result_details");
   const baseURL = "https://swapi.dev/api/";
   const buttonBody = document.querySelectorAll("#filter-list li");
 
@@ -147,6 +147,7 @@
 
   //  Display Character Details
   results.addEventListener("click", async (event) => {
+    resultDetails.innerHTML = "";
     if (event.target.tagName === "LI") {
       const charName = event.target.textContent;
       const selectedCharacter = filterCharacters.find(
@@ -154,23 +155,50 @@
       );
 
       if (selectedCharacter) {
-        console.log("Name", selectedCharacter.name);
+        const h4 = document.createElement("h4");
+        const p = document.createElement("p");
+        h4.textContent = `Name`;
+        p.textContent = selectedCharacter.name;
+        resultDetails.appendChild(h4);
+        resultDetails.appendChild(p);
         for (let i = 0; i < filterPlanets.length; i++) {
           if (selectedCharacter.homeworld === filterPlanets[i].url) {
-            console.log("Home Planet:", filterPlanets[i].name);
+            const h4 = document.createElement("h4");
+            const p = document.createElement("p");
+            h4.textContent = `Planet`;
+            p.textContent = filterPlanets[i].name;
+            resultDetails.appendChild(h4);
+            resultDetails.appendChild(p);
           }
         }
-
         for (let i = 0; i < filterSpecies.length; i++) {
           if (selectedCharacter.species[0] === filterSpecies[i].url) {
-            console.log("Species:", filterSpecies[i].name);
+            const h4 = document.createElement("h4");
+            const p = document.createElement("p");
+            h4.textContent = `Species`;
+            p.textContent = filterSpecies[i].name;
+            resultDetails.appendChild(h4);
+            resultDetails.appendChild(p);
           }
         }
 
-        console.log("First Exist:", selectedCharacter.films[0]);
+        for (let i = 0; i <= selectedCharacter.films.length; i++) {
+          if (
+            selectedCharacter.films[0] === `https://swapi.dev/api/films/${i}/`
+          ) {
+            // console.log("First Film:", selectedCharacter.films[i]);
+            const h4 = document.createElement("h4");
+            const div = document.createElement("div");
+            const img = document.createElement("img");
+            h4.textContent = `First Film`;
+            img.src = `images/starwars${i}`;
+            img.alt = `Star Wars ${i}`;
 
-        const li = document.createElement("li");
-        li.textContent = `Classification: ${selectedCharacter.name}`;
+            div.appendChild(img);
+            resultDetails.appendChild(h4);
+            resultDetails.appendChild(div);
+          }
+        }
       }
     }
   });
