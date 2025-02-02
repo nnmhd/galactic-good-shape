@@ -226,14 +226,8 @@
             const div = document.createElement("div");
             const img = document.createElement("img");
             h4.textContent = `First Film:`;
-            if (i >= 3) {
-              p.textContent = filterFilms[i - 4].title;
-              img.src = `images/starwars${i - 4}`;
-            } else if (i < 3) {
-              p.textContent = filterFilms[i + 2].title;
-              img.src = `images/starwars${i + 2}`;
-            }
-
+            p.textContent = filterFilms[i - 1].title;
+            img.src = `images/starwars0${i}.jpg`;
             div.appendChild(img);
             resultDetails.appendChild(h4);
             resultDetails.appendChild(p);
