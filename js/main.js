@@ -64,6 +64,26 @@
     });
   }
 
+  //   Fetch all films
+  function getAllFilms() {
+    let allFilms = [];
+    let nextPage = `${baseURL}/films/?page=1`;
+
+    function fetchPage(url) {
+      return fetch(url)
+        .then((res) => res.json())
+        .then((response) => {
+          allFilms.push(...response.results);
+          if (response.next) {
+            return fetchPage(response.next);
+          }
+        });
+    }
+    return fetchPage(nextPage).then(() => {
+      return allFilms;
+    });
+  }
+
   //   Calculate BMI
   function calBMI(height, weight) {
     if (!isNaN(height) && !isNaN(weight)) {
@@ -78,6 +98,7 @@
     list.addEventListener("click", () => {
       const cal = list.dataset.action;
       results.innerHTML = "";
+      resultDetails.innerHTML = "";
 
       getAllChars().then((data) => {
         filterCharacters = data.filter((char) => {
@@ -136,7 +157,7 @@
     getAllSpecies()
       .then((data) => {
         filterSpecies = data;
-        console.log("Loaded Planets:", filterSpecies);
+        console.log("Loaded Species:", filterSpecies);
       })
       .catch((error) => {
         console.error("Issue:", error);
@@ -144,6 +165,20 @@
   }
 
   loadSpeciesData();
+
+  //  Filter Films
+  let filterFilms = [];
+  function loadFilmsData() {
+    getAllFilms()
+      .then((data) => {
+        filterFilms = data;
+        console.log("Loaded Films:", filterFilms);
+      })
+      .catch((error) => {
+        console.error("Issue:", error);
+      });
+  }
+  loadFilmsData();
 
   //  Display Character Details
   results.addEventListener("click", async (event) => {
@@ -182,20 +217,26 @@
           }
         }
 
-        for (let i = 0; i <= selectedCharacter.films.length; i++) {
+        for (let i = 0; i <= filterFilms.length; i++) {
           if (
             selectedCharacter.films[0] === `https://swapi.dev/api/films/${i}/`
           ) {
-            // console.log("First Film:", selectedCharacter.films[i]);
             const h4 = document.createElement("h4");
+            const p = document.createElement("p");
             const div = document.createElement("div");
             const img = document.createElement("img");
-            h4.textContent = `First Film`;
-            img.src = `images/starwars${i}`;
-            img.alt = `Star Wars ${i}`;
+            h4.textContent = `First Film:`;
+            if (i >= 3) {
+              p.textContent = filterFilms[i - 4].title;
+              img.src = `images/starwars${i - 4}`;
+            } else if (i < 3) {
+              p.textContent = filterFilms[i + 2].title;
+              img.src = `images/starwars${i + 2}`;
+            }
 
             div.appendChild(img);
             resultDetails.appendChild(h4);
+            resultDetails.appendChild(p);
             resultDetails.appendChild(div);
           }
         }
