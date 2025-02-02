@@ -192,10 +192,16 @@
       if (selectedCharacter) {
         const h4 = document.createElement("h4");
         const p = document.createElement("p");
+        const pHeight = document.createElement("p");
+        const pWeight = document.createElement("p");
         h4.textContent = `Name`;
         p.textContent = selectedCharacter.name;
+        pHeight.textContent = `Height: ${selectedCharacter.height} cm`;
+        pWeight.textContent = `Weight: ${selectedCharacter.mass} kg`;
         resultDetails.appendChild(h4);
         resultDetails.appendChild(p);
+        resultDetails.appendChild(pHeight);
+        resultDetails.appendChild(pWeight);
         for (let i = 0; i < filterPlanets.length; i++) {
           if (selectedCharacter.homeworld === filterPlanets[i].url) {
             const h4 = document.createElement("h4");
@@ -226,14 +232,8 @@
             const div = document.createElement("div");
             const img = document.createElement("img");
             h4.textContent = `First Film:`;
-            if (i >= 3) {
-              p.textContent = filterFilms[i - 4].title;
-              img.src = `images/starwars${i - 4}`;
-            } else if (i < 3) {
-              p.textContent = filterFilms[i + 2].title;
-              img.src = `images/starwars${i + 2}`;
-            }
-
+            p.textContent = filterFilms[i - 1].title;
+            img.src = `images/starwars0${i}.jpg`;
             div.appendChild(img);
             resultDetails.appendChild(h4);
             resultDetails.appendChild(p);

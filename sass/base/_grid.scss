@@ -59,14 +59,14 @@ h5 {
   /* set this container as a grid, with 3 columns
    the other grid will sit in the middle column, this allows for overlapping content */
   display: grid;
-  grid-template-columns: 1fr minmax(0, 1200px) 1fr;
+  grid-template-columns: 1fr minmax(0, 1920px) 1fr;
 }
 
 .grid-con {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-column-gap: 30px;
-  max-width: 1200px;
+  max-width: 1920px;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
