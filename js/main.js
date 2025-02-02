@@ -192,10 +192,16 @@
       if (selectedCharacter) {
         const h4 = document.createElement("h4");
         const p = document.createElement("p");
+        const pHeight = document.createElement("p");
+        const pWeight = document.createElement("p");
         h4.textContent = `Name`;
         p.textContent = selectedCharacter.name;
+        pHeight.textContent = `Height: ${selectedCharacter.height} cm`;
+        pWeight.textContent = `Weight: ${selectedCharacter.mass} kg`;
         resultDetails.appendChild(h4);
         resultDetails.appendChild(p);
+        resultDetails.appendChild(pHeight);
+        resultDetails.appendChild(pWeight);
         for (let i = 0; i < filterPlanets.length; i++) {
           if (selectedCharacter.homeworld === filterPlanets[i].url) {
             const h4 = document.createElement("h4");

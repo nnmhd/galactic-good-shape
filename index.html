@@ -4,34 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
+    <script
+      src="https://kit.fontawesome.com/97e2f7a12f.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="js/main.js"></script>
     <title>Galactic Good Shape</title>
   </head>
   <body>
     <h1 class="hidden">The Galactic needs more people healthy!</h1>
-    <header>
-      <h2>Galactic Good Shape</h2>
+    <header class="grid-con">
+      <div id="logo__box" class="col-span-full">
+        <img src="images/starwars_logo.png" alt="Star Wars Logo" />
+        <img src="images/bmi_logo.png" alt="BMI Logo" />
+      </div>
     </header>
+
+    <div id="hero_section" class="full-width-grid-con"></div>
     <!-- Filter section, user choose weight to see the list -->
-    <section id="filter__container">
+    <section id="filter__container" class="grid-con">
       <h2 class="hidden">
         The Filter Section, Who are now not on the good shape,we'll see!
       </h2>
-      <h2 id="body">
+      <h2 id="body" class="l-col-start-4 l-col-span-6">
+        <button type="menu">Overweight</button>
+        <i class="fa-sharp fa-thin fa-chevron-down"></i>
         <!-- Show type of body -->
       </h2>
-      <p>The Galactic people has high BMI.</p>
-      <ul id="filter-list">
-        <li data-action="obesity">Obesity</li>
-        <li data-action="overweight">Overweight</li>
-        <li data-action="normal">Normal</li>
-        <li data-action="underweight">Underweight</li>
-      </ul>
+      <div id="filter__box" class="hidden">
+        <p>The Galactic people has high BMI.</p>
+        <ul id="filter-list">
+          <li data-action="obesity">Obesity</li>
+          <li data-action="overweight">Overweight</li>
+          <li data-action="normal">Normal</li>
+          <li data-action="underweight">Underweight</li>
+        </ul>
+      </div>
     </section>
 
     <!-- The result -->
     <section id="result__container">
-      <h3>Top List of</h3>
+      <h3></h3>
       <div id="results">
         <div id="img__box"><img src="#" alt="" /></div>
         <ul></ul>
