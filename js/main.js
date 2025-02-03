@@ -3,6 +3,35 @@
   const resultDetails = document.querySelector("#result_details");
   const baseURL = "https://swapi.dev/api/";
   const buttonBody = document.querySelectorAll("#filter-list li");
+  const buttonStart = document.querySelector("#body button");
+  const filterBox = document.querySelector("#filter__box");
+  const showFilter = document.querySelector("#showFilter");
+  const resultSynopsis = document.querySelector("#result_synopsis");
+  console.log(buttonStart);
+
+  buttonStart.addEventListener("click", () => {
+    const i = buttonStart.querySelector("i");
+    filterBox.classList.toggle("hidden");
+    if (filterBox.classList.contains("hidden")) {
+      i.style.transform = "rotate(-90deg)";
+    } else {
+      i.style.transform = "rotate(0)";
+    }
+    filterBox.addEventListener("mouseleave", () => {
+      i.style.transform = "rotate(-90deg)";
+      filterBox.classList.add("hidden");
+    });
+  });
+
+  buttonBody.forEach((list) => {
+    list.addEventListener("click", () => {
+      showFilter.innerHTML = list.dataset.action;
+      document.querySelector("#result-type").textContent = list.dataset.action;
+      document.querySelector(
+        "#result-headline"
+      ).textContent = `These Galactic units has ${list.dataset.desc} BMI`;
+    });
+  });
 
   //   Fetch all characters
   function getAllChars() {
@@ -99,6 +128,7 @@
       const cal = list.dataset.action;
       results.innerHTML = "";
       resultDetails.innerHTML = "";
+      resultSynopsis.innerHTML = "";
 
       getAllChars().then((data) => {
         filterCharacters = data.filter((char) => {
@@ -183,6 +213,7 @@
   //  Display Character Details
   results.addEventListener("click", async (event) => {
     resultDetails.innerHTML = "";
+    resultSynopsis.innerHTML = "";
     if (event.target.tagName === "LI") {
       const charName = event.target.textContent;
       const selectedCharacter = filterCharacters.find(
@@ -190,55 +221,56 @@
       );
 
       if (selectedCharacter) {
-        const h4 = document.createElement("h4");
         const p = document.createElement("p");
         const pHeight = document.createElement("p");
         const pWeight = document.createElement("p");
-        h4.textContent = `Name`;
-        p.textContent = selectedCharacter.name;
+        p.textContent = `Name: ${selectedCharacter.name}`;
         pHeight.textContent = `Height: ${selectedCharacter.height} cm`;
         pWeight.textContent = `Weight: ${selectedCharacter.mass} kg`;
-        resultDetails.appendChild(h4);
         resultDetails.appendChild(p);
         resultDetails.appendChild(pHeight);
         resultDetails.appendChild(pWeight);
+
         for (let i = 0; i < filterPlanets.length; i++) {
           if (selectedCharacter.homeworld === filterPlanets[i].url) {
-            const h4 = document.createElement("h4");
             const p = document.createElement("p");
-            h4.textContent = `Planet`;
-            p.textContent = filterPlanets[i].name;
-            resultDetails.appendChild(h4);
+            p.textContent = `Planet: ${filterPlanets[i].name}`;
             resultDetails.appendChild(p);
           }
         }
         for (let i = 0; i < filterSpecies.length; i++) {
           if (selectedCharacter.species[0] === filterSpecies[i].url) {
-            const h4 = document.createElement("h4");
             const p = document.createElement("p");
-            h4.textContent = `Species`;
-            p.textContent = filterSpecies[i].name;
-            resultDetails.appendChild(h4);
+            p.textContent = `Species: ${filterSpecies[i].name}`;
             resultDetails.appendChild(p);
           }
         }
 
-        for (let i = 0; i <= filterFilms.length; i++) {
+        let found = false;
+
+        for (let i = 0; i < filterFilms.length; i++) {
           if (
             selectedCharacter.films[0] === `https://swapi.dev/api/films/${i}/`
           ) {
-            const h4 = document.createElement("h4");
+            found = true;
             const p = document.createElement("p");
             const div = document.createElement("div");
             const img = document.createElement("img");
-            h4.textContent = `First Film:`;
-            p.textContent = filterFilms[i - 1].title;
+            const pSynopsis = document.createElement("p");
+            p.textContent = `First Film: ${filterFilms[i - 1].title}`;
+            pSynopsis.innerHTML = filterFilms[i - 1].opening_crawl;
             img.src = `images/starwars0${i}.jpg`;
             div.appendChild(img);
-            resultDetails.appendChild(h4);
             resultDetails.appendChild(p);
             resultDetails.appendChild(div);
+            resultSynopsis.appendChild(pSynopsis);
           }
+        }
+        if (!found) {
+          const errorMsg = document.createElement("p");
+          errorMsg.textContent = "No matching film found!";
+          errorMsg.style.color = "red";
+          resultDetails.appendChild(errorMsg);
         }
       }
     }
