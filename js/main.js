@@ -7,6 +7,8 @@
   const filterBox = document.querySelector("#filter__box");
   const showFilter = document.querySelector("#showFilter");
   const resultSynopsis = document.querySelector("#result_synopsis");
+  const resultCon = document.querySelector("#result__container");
+  const closeBtn = document.querySelector("#closeButton");
   console.log(buttonStart);
 
   buttonStart.addEventListener("click", () => {
@@ -29,7 +31,10 @@
       document.querySelector("#result-type").textContent = list.dataset.action;
       document.querySelector(
         "#result-headline"
-      ).textContent = `These Galactic units has ${list.dataset.desc} BMI`;
+      ).textContent = `These Galactic units have ${list.dataset.desc} BMI`;
+      document.querySelector("#result-caution").textContent =
+        list.dataset.caution;
+      document.querySelector("#result-caution").style.opacity = 1;
     });
   });
 
@@ -130,6 +135,10 @@
       resultDetails.innerHTML = "";
       resultSynopsis.innerHTML = "";
 
+      resultCon.style.transform = "translateY(-200px)";
+      resultCon.style.visibility = "visible";
+      resultCon.style.transition = "transform 0.5s ease-in-out";
+
       getAllChars().then((data) => {
         filterCharacters = data.filter((char) => {
           let height = parseFloat(char.height);
@@ -167,6 +176,11 @@
     });
   });
 
+  closeBtn.addEventListener("click", () => {
+    resultCon.style.transform = "translateY(-200vh)";
+    resultCon.style.visibility = "hidden";
+    document.querySelector("#result-caution").style.opacity = 1;
+  });
   //  Filter Planets
   let filterPlanets = [];
   function loadPlanetsData() {
@@ -273,6 +287,14 @@
           resultDetails.appendChild(errorMsg);
         }
       }
+    }
+  });
+
+  tabClose = document.querySelector("#result-type");
+  tabClose.addEventListener("click", () => {
+    if (window.innerWidth < 468) {
+      resultCon.style.transform = "translateY(-200vh)";
+      resultCon.style.visibility = "hidden";
     }
   });
 })();
