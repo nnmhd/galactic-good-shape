@@ -1,5 +1,7 @@
 body {
   background-color: gainsboro;
+  height: auto;
+  background: #0c0c0c;
 }
 
 header {
@@ -30,7 +32,9 @@ header {
 #filter__container {
   width: 100%;
   position: absolute;
-  bottom: 20%;
+  bottom: 40%;
+  display: flex;
+  flex-direction: column;
 }
 
 #body {
@@ -41,19 +45,153 @@ header {
   align-items: center;
 
   button {
+    position: relative;
     font-size: 3rem;
-    font-weight: 100;
-    width: 100%;
+    font-weight: 200;
+    text-transform: capitalize;
+    width: 60%;
     height: 96px;
     border-radius: 24px;
     background-color: white;
     border: inset 2px rgba(196, 123, 172, 0.4);
+    cursor: pointer;
+    transition: border 0.3s ease-in-out;
+  }
+
+  button:hover {
+    border: 1px solid rgba(196, 123, 172, 0.8);
+    box-shadow: inset 0px 0px 10px rgba(196, 123, 172, 0.2);
   }
 
   i {
     position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    font-size: 2rem;
+    bottom: 30%;
+    right: 30px;
+    color: rgba(196, 123, 172, 1);
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
+#filter__box {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  #filter-list {
+    filter: opacity(0.8);
+    margin: 32px auto;
+    width: 80%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 100;
+    padding: 0;
+
+    li {
+      cursor: pointer;
+      color: rgba(196, 123, 172, 1);
+      filter: opacity(0.9);
+    }
+
+    li:hover {
+      color: black;
+      filter: opacity(1);
+    }
+  }
+}
+
+// Character Card
+
+#result__container {
+  background-color: #0c0c0c;
+  color: whitesmoke;
+  height: auto;
+  min-height: 100vh;
+  max-height: auto;
+}
+
+#result-header {
+  margin-top: 36px;
+  height: 300px;
+  text-transform: capitalize;
+  h3 {
+    font-size: 8rem;
+    font-weight: 200;
+  }
+  p {
+    font-size: 2.5rem;
+    font-weight: 100;
+  }
+}
+
+#results ul {
+  padding: 0;
+  height: 50vh;
+  list-style-type: none;
+  font-size: 1.75rem;
+  font-weight: 100;
+  line-height: 1.5;
+  li {
+    cursor: pointer;
+  }
+}
+
+#results ul li:hover {
+  color: rgb(205, 101, 170);
+}
+
+#result_details {
+  padding-top: 24px;
+  font-size: 1.75rem;
+  font-weight: 100;
+  line-height: 1.5;
+}
+
+#result_details div img {
+  margin: 24px auto;
+  width: 500px;
+}
+
+#result_synopsis {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 100;
+  padding: 24px;
+  color: goldenrod;
+}
+
+footer {
+  margin-top: 24px;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  padding: 16px;
+  mix-blend-mode: exclusion;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  p {
+    text-align: right;
+  }
+
+  a {
+    text-decoration: none;
+    color: goldenrod;
   }
 }
