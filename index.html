@@ -22,39 +22,75 @@
 
     <div id="hero_section" class="full-width-grid-con"></div>
     <!-- Filter section, user choose weight to see the list -->
-    <section id="filter__container" class="grid-con">
+    <section id="filter__container" class="">
       <h2 class="hidden">
         The Filter Section, Who are now not on the good shape,we'll see!
       </h2>
-      <h2 id="body" class="l-col-start-4 l-col-span-6">
+      <div id="foreword">
+        Galactic Good Shape is now the law of the galaxy. No one shall grow
+        larger than the mighty Jabba the Hutt. Identify those at risk—at once!
+      </div>
+      <!-- Show type of body -->
+      <h2 id="body" class="col-span-full">
         <button type="menu">
           <span id="showFilter">Overweight </span>
           <i class="fa-sharp fa-thin fa-chevron-down"></i>
         </button>
-
-        <!-- Show type of body -->
       </h2>
       <div id="filter__box" class="hidden">
         <ul id="filter-list">
-          <li data-action="obesity" data-desc="super high">Obesity</li>
-          <li data-action="overweight" data-desc="high">Overweight</li>
-          <li data-action="normal" data-desc="normal">Normal</li>
-          <li data-action="underweight" data-desc="too low">Underweight</li>
+          <li
+            data-action="obesity"
+            data-desc="super high"
+            data-caution="Control your hunger, you must.Train your body, you will. The path of Intermittent Fasting, embrace it."
+          >
+            Obesity
+          </li>
+          <li
+            data-action="overweight"
+            data-desc="high"
+            data-caution="Let not your mouth dictate your fate. Discipline, a Jedi must have."
+          >
+            Overweight
+          </li>
+          <li
+            data-action="normal"
+            data-desc="normal"
+            data-caution="Steady, you must be. Balance, the way of the Force it is."
+          >
+            Normal
+          </li>
+          <li
+            data-action="underweight"
+            data-desc="too low"
+            data-caution="Fuel your body, you must. Strength, from nourishment it comes."
+          >
+            Underweight
+          </li>
         </ul>
       </div>
     </section>
 
     <!-- The result -->
-    <section id="result__container" class="grid-con">
+    <section id="result__container" class="full-width-grid-con">
       <div id="result-header" class="col-span-full">
         <h3 id="result-type"></h3>
         <p id="result-headline"></p>
+        <br />
+        <p id="result-caution"></p>
       </div>
-      <div id="results" class="l-col-span-4 l-col-start-1">
+      <div id="results" class="l-col-span-3 m-col-span-3 col-span-2">
         <ul></ul>
       </div>
-      <div id="result_details" class="l-col-span-4"></div>
-      <div id="result_synopsis" class="l-col-span-4"></div>
+      <div
+        id="result_details"
+        class="l-col-span-4 m-col-span-3 col-span-2"
+      ></div>
+      <div
+        id="result_synopsis"
+        class="l-col-span-4 m-col-span-2 col-span-full"
+      ></div>
+      <i id="closeButton" class="fa-thin fa-x"></i>
     </section>
 
     <footer class="full-width-grid-con">

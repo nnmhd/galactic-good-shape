@@ -59,7 +59,9 @@ h5 {
   /* set this container as a grid, with 3 columns
    the other grid will sit in the middle column, this allows for overlapping content */
   display: grid;
-  grid-template-columns: 1fr minmax(0, 1920px) 1fr;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 auto;
+  padding: 48px;
 }
 
 .grid-con {
@@ -130,6 +132,13 @@ h5 {
 /* ---Tablet Library Grid Styles--- */
 
 @media screen and (min-width: 768px) {
+  .full-width-grid-con {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    margin: 0 auto;
+    padding: 48px;
+  }
+
   .grid-con {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -271,6 +280,12 @@ h5 {
 /* ---Desktop Library Grid Styles--- */
 
 @media screen and (min-width: 1200px) {
+  .full-width-grid-con {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    margin: 0 auto;
+    padding: 48px;
+  }
   .grid-con {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -415,6 +430,7 @@ h5 {
   .grid-con {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
+    margin: 0 auto;
     grid-column-gap: 34px;
     padding-left: 17px;
     padding-right: 17px;
