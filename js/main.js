@@ -9,6 +9,8 @@
   const resultSynopsis = document.querySelector("#result_synopsis");
   const resultCon = document.querySelector("#result__container");
   const closeBtn = document.querySelector("#closeButton");
+  const headerBox = document.querySelector("header");
+  const loading = document.querySelector("#loading-animate");
   console.log(buttonStart);
 
   buttonStart.addEventListener("click", () => {
@@ -130,23 +132,22 @@
   let filterCharacters = [];
   buttonBody.forEach((list) => {
     list.addEventListener("click", () => {
+      loading.classList.toggle("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
       const cal = list.dataset.action;
       results.innerHTML = "";
       resultDetails.innerHTML = "";
       resultSynopsis.innerHTML = "";
-
-      resultCon.style.transform = "translateY(-200px)";
+      resultCon.style.transform = "translateY(0)";
       resultCon.style.visibility = "visible";
       resultCon.style.transition = "transform 0.5s ease-in-out";
-
+      headerBox.style.display = "none";
       getAllChars().then((data) => {
         filterCharacters = data.filter((char) => {
           let height = parseFloat(char.height);
           let weight = parseFloat(char.mass);
           let calculated = calBMI(height, weight);
-
           if (calculated === null) return false;
-
           switch (cal) {
             case "obesity":
               return calculated >= 30;
@@ -160,12 +161,12 @@
               return false;
           }
         });
-
         filterCharacters.forEach((char) => {
           const li = document.createElement("li");
           li.textContent = char.name;
           results.appendChild(li);
         });
+        loading.classList.toggle("hidden");
       });
     });
   });
@@ -180,7 +181,9 @@
     resultCon.style.transform = "translateY(-200vh)";
     resultCon.style.visibility = "hidden";
     document.querySelector("#result-caution").style.opacity = 1;
+    headerBox.style.display = "block";
   });
+
   //  Filter Planets
   let filterPlanets = [];
   function loadPlanetsData() {

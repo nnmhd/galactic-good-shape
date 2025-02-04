@@ -8,11 +8,17 @@
       src="https://kit.fontawesome.com/97e2f7a12f.js"
       crossorigin="anonymous"
     ></script>
-    <script defer src="js/main.js"></script>
+
     <title>Galactic Good Shape</title>
   </head>
   <body>
     <h1 class="hidden">The Galactic needs more people healthy!</h1>
+    <div id="foreword">
+      <p>
+        Galactic Good Shape is now the law of the galaxy. No one shall grow
+        larger than the mighty Jabba the Hutt. Identify those at risk—at once!
+      </p>
+    </div>
     <header class="grid-con">
       <div id="logo__box" class="col-span-full">
         <img src="images/starwars_logo.png" alt="Star Wars Logo" />
@@ -20,16 +26,12 @@
       </div>
     </header>
 
-    <div id="hero_section" class="full-width-grid-con"></div>
     <!-- Filter section, user choose weight to see the list -->
-    <section id="filter__container" class="">
+    <section id="filter__container" class="full-width-grid-con">
       <h2 class="hidden">
         The Filter Section, Who are now not on the good shape,we'll see!
       </h2>
-      <div id="foreword">
-        Galactic Good Shape is now the law of the galaxy. No one shall grow
-        larger than the mighty Jabba the Hutt. Identify those at risk—at once!
-      </div>
+
       <!-- Show type of body -->
       <h2 id="body" class="col-span-full">
         <button type="menu">
@@ -73,6 +75,12 @@
 
     <!-- The result -->
     <section id="result__container" class="full-width-grid-con">
+      <img
+        id="loading-animate"
+        class="hidden"
+        src="images/tube-spinner.svg"
+        alt="loading animating"
+      />
       <div id="result-header" class="col-span-full">
         <h3 id="result-type"></h3>
         <p id="result-headline"></p>
@@ -98,5 +106,11 @@
         @nate, Thanks to <a href="https://stapi.dev">STAPI.dev</a>
       </div>
     </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/gsap.js"></script>
+    <script defer src="js/main.js"></script>
   </body>
 </html>

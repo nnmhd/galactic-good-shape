@@ -1,13 +1,17 @@
 body {
   background-color: #0c0c0c;
-  height: 100vh;
+  background-image: url("../images/jabba.webp");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 header {
   width: 100%;
-  height: auto;
+  height: 200px;
   z-index: 99;
-  position: relative;
+  top: 0;
+  position: sticky;
 }
 
 #logo__box {
@@ -19,26 +23,25 @@ header {
   }
 }
 
-#hero_section {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("../images/jabba.webp");
-  background-position: center;
-  background-size: cover;
-}
-
 #foreword {
-  width: 60%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0 160px;
   margin: 0 auto;
   font-size: 5rem;
   font-weight: 900;
   text-align: center;
   color: whitesmoke;
   text-shadow: #7c1384 0px 0px 8px;
-  transform: translateY(50%);
-  display: none;
+  background: #0c0c0c;
+}
+
+#loading-animate {
+  width: 100px;
 }
 
 #filter__container {
@@ -89,7 +92,7 @@ header {
 
 #filter__box {
   position: absolute;
-  top: 100px;
+  top: 150px;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
@@ -135,13 +138,11 @@ header {
   min-height: 100%;
   z-index: 1000;
   position: relative;
-  transform: translateY(-200vh);
   visibility: hidden;
 }
 
 #result-header {
   margin-top: 36px;
-  height: 300px;
   text-transform: capitalize;
   h3 {
     font-size: 8rem;
@@ -159,11 +160,12 @@ header {
 
 #results ul {
   padding: 0;
-  height: 50vh;
+  height: 100vh;
   list-style-type: none;
   font-size: 1.75rem;
   font-weight: 100;
   line-height: 1.5;
+
   li {
     cursor: pointer;
   }
@@ -188,7 +190,7 @@ header {
 #result_synopsis {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   text-align: left;
   font-size: 1rem;
   font-weight: 100;
@@ -266,6 +268,11 @@ footer {
 @media screen and (max-width: 468px) {
   #closeButton {
     display: none;
+  }
+
+  #foreword {
+    font-size: 2rem;
+    padding: 0 24px;
   }
 
   #body {
