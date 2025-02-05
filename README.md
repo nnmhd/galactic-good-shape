@@ -13,7 +13,7 @@ This project is designed to help you practice fetching data from the Star Wars A
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/nnmhd/starwars_api.git
+   git clone https://github.com/nnmhd/Mahaittidon_Natchanon_AJAX-REDUX.git
    ```
 2. Navigate to the project directory:
    ```bash
