@@ -39,3 +39,4 @@ This project is designed to help you practice fetching data from the Star Wars A
 - [Star Wars API](https://swapi.dev/) for providing the data.
 
 Enjoy exploring the Star Wars universe!
+And this is just for funs! and just want you guys to stay healthy!
