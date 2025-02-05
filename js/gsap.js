@@ -5,7 +5,6 @@
   const resultCon = document.querySelector("#result__container");
   const foreword = document.querySelector("#foreword");
   const filterBox = document.querySelector("#filter__container");
-
   const screenSize = gsap.matchMedia();
 
   gsap.fromTo(
@@ -21,7 +20,6 @@
         start: "5px",
         end: "100px",
         scrub: false,
-        markers: true,
       },
     }
   );
@@ -39,7 +37,6 @@
         start: "10px",
         end: "20px",
         scrub: false,
-        markers: true,
       },
     }
   );
