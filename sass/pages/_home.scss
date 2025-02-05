@@ -60,6 +60,13 @@ header {
   align-items: center;
   z-index: 0;
 
+  p {
+    color: #0c0c0c;
+    font-weight: 900;
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+  }
+
   button {
     position: relative;
     font-size: 3rem;
@@ -92,7 +99,7 @@ header {
 
 #filter__box {
   position: absolute;
-  top: 150px;
+  top: 200px;
   left: 50%;
   transform: translateX(-50%);
   width: 60%;

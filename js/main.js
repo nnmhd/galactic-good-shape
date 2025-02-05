@@ -176,14 +176,12 @@
       console.log(list.dataset.action);
     });
   });
-
   closeBtn.addEventListener("click", () => {
     resultCon.style.transform = "translateY(-200vh)";
     resultCon.style.visibility = "hidden";
     document.querySelector("#result-caution").style.opacity = 1;
     headerBox.style.display = "block";
   });
-
   //  Filter Planets
   let filterPlanets = [];
   function loadPlanetsData() {
@@ -210,7 +208,6 @@
         console.error("Issue:", error);
       });
   }
-
   loadSpeciesData();
 
   //  Filter Films
@@ -236,7 +233,6 @@
       const selectedCharacter = filterCharacters.find(
         (char) => char.name === charName
       );
-
       if (selectedCharacter) {
         const p = document.createElement("p");
         const pHeight = document.createElement("p");
@@ -247,7 +243,6 @@
         resultDetails.appendChild(p);
         resultDetails.appendChild(pHeight);
         resultDetails.appendChild(pWeight);
-
         for (let i = 0; i < filterPlanets.length; i++) {
           if (selectedCharacter.homeworld === filterPlanets[i].url) {
             const p = document.createElement("p");
@@ -264,7 +259,6 @@
         }
 
         let found = false;
-
         for (let i = 0; i < filterFilms.length; i++) {
           if (
             selectedCharacter.films[0] === `https://swapi.dev/api/films/${i}/`
