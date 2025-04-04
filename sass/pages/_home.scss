@@ -1,9 +1,11 @@
 body {
+  height: 100vh;
   background-color: #0c0c0c;
   background-image: url("../images/jabba.webp");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 header {
@@ -42,6 +44,9 @@ header {
 
 #loading-animate {
   width: 100px;
+  position: absolute;
+  bottom: 48px;
+  left: 24px;
 }
 
 #filter__container {
@@ -141,7 +146,7 @@ header {
 #result__container {
   background-color: #0c0c0c;
   color: whitesmoke;
-  height: auto;
+  height: fit-content;
   min-height: 100%;
   z-index: 1000;
   position: relative;
@@ -167,7 +172,6 @@ header {
 
 #results ul {
   padding: 0;
-  height: 100vh;
   list-style-type: none;
   font-size: 1.75rem;
   font-weight: 100;
@@ -248,13 +252,40 @@ footer {
   }
 }
 
+@media screen and (min-width: 1080px) {
+  #result-caution {
+    font-size: 2rem;
+  }
+
+  #foreword {
+    font-size: 4.5rem !important;
+    padding: 0 24px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #foreword {
+    font-size: 7rem !important;
+    padding: 0 24px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   #result-caution {
     font-size: 2rem;
   }
+
+  #foreword {
+    font-size: 3rem;
+    padding: 0 24px;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  #foreword {
+    font-size: 2rem;
+    padding: 0 24px;
+  }
   #result-caution {
     font-size: 1.75rem;
   }
@@ -278,7 +309,7 @@ footer {
   }
 
   #foreword {
-    font-size: 2rem;
+    font-size: 1rem;
     padding: 0 24px;
   }
 

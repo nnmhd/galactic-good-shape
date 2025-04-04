@@ -142,11 +142,13 @@
       resultCon.style.visibility = "visible";
       resultCon.style.transition = "transform 0.5s ease-in-out";
       headerBox.style.display = "none";
+
       getAllChars().then((data) => {
         filterCharacters = data.filter((char) => {
           let height = parseFloat(char.height);
           let weight = parseFloat(char.mass);
           let calculated = calBMI(height, weight);
+          document.body.style.overflow = "visible";
           if (calculated === null) return false;
           switch (cal) {
             case "obesity":
