@@ -16,28 +16,20 @@
       y: "-200%",
       duration: 10,
       ease: "circ",
-      scrollTrigger: {
-        start: "5px",
-        end: "100px",
-        scrub: false,
-      },
+      delay: 3,
     }
   );
 
   gsap.fromTo(
     filterBox,
     {
-      y: `400%`,
+      opacity: 0,
     },
     {
-      y: "0%",
+      opacity: 1,
       duration: 3,
       ease: "circ",
-      scrollTrigger: {
-        start: "10px",
-        end: "20px",
-        scrub: false,
-      },
+      delay: 3,
     }
   );
 })();
